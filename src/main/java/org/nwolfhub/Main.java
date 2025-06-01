@@ -1,15 +1,25 @@
 package org.nwolfhub;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Set<Double> results = new HashSet<>();
-        results.add(1.0);
-        for (int k = 1; k < 30; k++) {
-            results.add(1.0 / Math.pow(10, k));
+        List<BigInteger> A = new ArrayList<>();
+        BigInteger a = BigInteger.ONE;
+        BigInteger b = BigInteger.valueOf(3);
+        A.add(a);
+        A.add(b);
+
+        while (A.size() < 40) {
+            BigInteger next = b.multiply(BigInteger.valueOf(5)).add(a);
+            if (next.mod(BigInteger.TWO).equals(BigInteger.ONE)) {
+                A.add(next);
+            }
+            a = b;
+            b = next;
         }
-        System.out.println(results.size());
+        System.out.println(A.get(39));
     }
 }
